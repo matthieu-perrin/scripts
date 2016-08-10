@@ -1,0 +1,5 @@
+/usr/local/nagios
+/usr/local/centreon
+/usr/local/nagvis
+/usr/local/scripts
+/usr/local/cfx

@@ -1,0 +1,15 @@
+centreon_acl
+nagios_commenthistory
+nagios_comments
+nagios_customvariables
+nagios_downtimehistory
+nagios_hostgroups
+nagios_hostgroup_members
+nagios_hosts
+nagios_hoststatus
+nagios_objects
+nagios_processevents
+nagios_scheduleddowntime
+nagios_servicegroup_members
+nagios_services
+nagios_servicestatus

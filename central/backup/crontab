@@ -1,0 +1,2 @@
+
+11 23 * * *     /usr/local/scripts/backup/backup.sh >> /usr/local/scripts/backup/backup.log 2>&1
