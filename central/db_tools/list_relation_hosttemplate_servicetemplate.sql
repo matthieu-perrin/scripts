@@ -1,0 +1,1 @@
+SELECT DISTINCT  host.host_name, service.service_description FROM host_service_relation, host_template_relation, host, service where host_service_relation.host_host_id=host_template_relation.host_tpl_id and host.host_id=host_service_relation.host_host_id and service.service_id=host_service_relation.service_service_id
