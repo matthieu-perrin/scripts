@@ -35,4 +35,3 @@ query='DELETE FROM `nagios_conninfo` WHERE data_end_time != 0;'
 # OPTIMISE TABLE
 query='OPTIMIZE TABLE `logs`,`data_bin`;'
 /usr/bin/mysql -u ${db_user} -h ${db_host} -p${db_passwd} -D ${db} -N -s -e "${query}"
-
