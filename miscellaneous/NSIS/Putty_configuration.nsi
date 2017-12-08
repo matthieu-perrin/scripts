@@ -1,17 +1,13 @@
-# eMaintenance - Matthieu PERRIN (OBS) - Juillet 2014
+# THIS SCRIPT IS PROVIDED "AS IS", WITHOUT ANY WARRANTY, AND WITHOUT ANY SUPPORT. 
+# Matthieu PERRIN - 2017 - CC-BY-SA
 # this will be the created executable archive
 OutFile "putty_configuration.exe"
-# define the directory to install to, the installer's directory in this case 
 InstallDir $PROGRAMFILES
 #InstallDir E:\
 
-# don't create a window for the unarchiver
-# You could get fancy and do all kinds of configuration 
-#   in the non-silent install; this example is the simplest it can be.
 SilentInstall silent
 #Icon "settings-13-128.ico"
 
-# the executable part
 Section
 
 
@@ -227,5 +223,4 @@ WriteRegDWORD HKEY_CURRENT_USER "Software\SimonTatham\PuTTY\Sessions\Default%20S
 WriteRegStr HKEY_CURRENT_USER "Software\SimonTatham\PuTTY\Sessions\Default%20Settings" "WindowClass" ""
 
 
-# done
 SectionEnd

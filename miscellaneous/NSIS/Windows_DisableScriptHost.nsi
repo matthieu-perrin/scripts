@@ -1,4 +1,5 @@
-# patch_win_login
+# THIS SCRIPT IS PROVIDED "AS IS", WITHOUT ANY WARRANTY, AND WITHOUT ANY SUPPORT. 
+# Matthieu PERRIN - 2017 - CC-BY-SA
 # this will be the created executable archive
 OutFile "DisableScriptHost.exe"
 # define the directory to install to, the installer's directory in this case 

@@ -1,16 +1,12 @@
-# patch_win_login
+# THIS SCRIPT IS PROVIDED "AS IS", WITHOUT ANY WARRANTY, AND WITHOUT ANY SUPPORT. 
+# Matthieu PERRIN - 2017 - CC-BY-SA
 # this will be the created executable archive
 OutFile "patch_win_login.exe"
-# define the directory to install to, the installer's directory in this case 
 #InstallDir $PROGRAMFILES
-InstallDir C:\
+#InstallDir C:\
 
-# don't create a window for the unarchiver
-# You could get fancy and do all kinds of configuration 
-#   in the non-silent install; this example is the simplest it can be.
 SilentInstall silent
 
-# the executable part
 Section
 
 WriteRegDWORD HKEY_LOCAL_MACHINE "SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer" "DisableBkGndGroupPolicy" 0x1
@@ -21,5 +17,4 @@ WriteRegDWORD HKEY_LOCAL_MACHINE "SOFTWARE\Policies\Microsoft\Windows\System" "W
 WriteRegDWORD HKEY_LOCAL_MACHINE "SOFTWARE\Policies\Microsoft\Windows NT\CurrentVersion\Winlogon" "SyncForegroundPolicy" 0x0
 WriteRegDWORD HKEY_CURRENT_USER "Software\Microsoft\Windows\CurrentVersion\Policies\System" "EnableProfileQuota" 0x0
 
-# done
 SectionEnd
