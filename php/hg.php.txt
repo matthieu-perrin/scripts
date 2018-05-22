@@ -1,0 +1,46 @@
+<?php
+
+$filename="/tmp/exports_" . basename(__FILE__, '.php');
+
+$sql = "select hosts.name, ch.host_alias, ch.host_address, instances.name, group_concat(DISTINCT centreon.hostcategories.hc_name  ORDER BY centreon.hostcategories.hc_name ASC), group_concat(DISTINCT hstpl.host_name), group_concat(DISTINCT centreon.hostgroup.hg_name ORDER BY centreon.hostgroup.hg_name ASC), hosts.state, hosts.notes, hosts.notes_url, hosts.action_url  FROM  hosts, hostgroups h1, hosts_hostgroups hh1, centreon.hostcategories_relation, centreon.hostcategories, centreon.host as ch, instances, centreon.host as hstpl, centreon.host_template_relation, centreon.hostgroup_relation,  centreon.hostgroup  WHERE  hosts.host_id = hh1.host_id and hh1.hostgroup_id = h1.hostgroup_id and centreon.hostcategories_relation.host_host_id = hosts.host_id and centreon.hostcategories_relation.hostcategories_hc_id = centreon.hostcategories.hc_id and hosts.host_id = ch.host_id and instances.instance_id = hosts.instance_id and centreon.host_template_relation.host_host_id = hosts.host_id and centreon.host_template_relation.host_tpl_id=hstpl.host_id and centreon.hostgroup_relation.host_host_id=hosts.host_id and  centreon.hostgroup_relation.hostgroup_hg_id=centreon.hostgroup.hg_id and h1.name like 'HG' group by hosts.host_id";
+
+
+
+function genfile()
+{
+        global $filename;
+        global $sql;
+
+        include '/etc/centreon/centreon.conf.php';
+        $db = mysql_connect($conf_centreon['hostCentreon'], $conf_centreon['user'], $conf_centreon['password']);
+        mysql_select_db("centreon_storage",$db);
+
+
+        $result = mysql_query($sql) or die('Erreur SQL !<br>'.$sql.'<br>'.mysql_error());
+        $text="";
+
+        while($row = mysql_fetch_array($result))
+        {
+                $r = implode(";", $row);
+                $text .= $r . "\n";
+        }
+
+        file_put_contents($filename, $text);
+
+        mysql_close();
+
+}
+
+
+if ( (! file_exists($filename)) || (time()-filemtime($filename) > 2 * 3600))
+{
+  genfile();
+}
+
+$modif = filemtime($filename);
+echo "DATE=" . $modif . "; " . date("F d Y H:i:s.", $modif) . " \n";
+
+$t = file_get_contents($filename);
+echo  $t;
+
+?>

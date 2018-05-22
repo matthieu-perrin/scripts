@@ -1,0 +1,52 @@
+<?php
+# Matthieu PERRIN - mai 2018
+# Utilisation : copier ce fichier et modifier uniquement la requete (ligne 8), le reste est generique
+
+# Fichier de cache 
+$filename="/tmp/exports_" . basename(__FILE__, '.php');
+
+# requete A MODIFIER
+$sql = "select hosts.name FROM  hosts  LIMIT 10";
+
+
+# Fonction qui execute la requete et met le resultat dans le fichier de cache
+function genfile()
+{
+        global $filename;
+        global $sql;
+
+        include '/etc/centreon/centreon.conf.php';
+        $db = mysql_connect($conf_centreon['hostCentreon'], $conf_centreon['user'], $conf_centreon['password']);
+        mysql_select_db("centreon_storage",$db);
+
+
+        $result = mysql_query($sql) or die('Erreur SQL !<br>'.$sql.'<br>'.mysql_error());
+        $text="";
+
+        while($row = mysql_fetch_array($result))
+        {
+                $r = implode(";", $row);
+                $text .= $r . "\n";
+        }
+
+        file_put_contents($filename, $text);
+
+        mysql_close();
+
+}
+
+# Si le fichier de cache n'existe pas OU si il est plus vieux que 2H 
+# ALORS executer la requete et generer le fichier de cache
+if ( (! file_exists($filename)) || (time()-filemtime($filename) > 2 * 3600))
+{
+  genfile();
+}
+
+# Affiche la date du fichier (= date des données)
+$modif = filemtime($filename);
+echo "DATE=" . $modif . "; " . date("F d Y H:i:s.", $modif) . " \n";
+# Affiche le fichier
+$t = file_get_contents($filename);
+echo  $t;
+
+?>
