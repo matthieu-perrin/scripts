@@ -30,4 +30,4 @@ function Remove-ADGroupMemberDomain()
 
 }
 
- # Remove-ADGroupMemberDomain -user "SDMN01\HL5774" -group "CORP\CSI TFS WebSouscription Readers"
+ # Remove-ADGroupMemberDomain -user "DOMAIN1\user" -group "DOMAIN2\groupe"
