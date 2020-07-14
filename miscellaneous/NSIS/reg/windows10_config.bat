@@ -30,7 +30,7 @@ REG ADD "HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU" /v "NoAutoRe
 REG ADD "HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU" /v "AUPowerManagement" /d 0 /t REG_DWORD /f
 :: Disable Update and Restart and Update and Shutdown option on power menu
 :: https://www.kapilarya.com/how-to-disable-remove-update-and-shut-down-in-windows-10
-REG ADD "HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU" /v "NoAUShutdownOption" /d 1 /t REG_DWORD /f
+::REG ADD "HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU" /v "NoAUShutdownOption" /d 1 /t REG_DWORD /f
 :: REG ADD "HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU" /v "NoAUAsDefaultShutdownOption" /d 1 /t REG_DWORD /f
 ::  Remove Lock in Account Picture Menu in Windows 10 but allows WINKEY + L
 :: https://www.tenforums.com/tutorials/61721-add-remove-lock-account-picture-menu-windows-10-a.html
